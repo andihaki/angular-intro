@@ -7,11 +7,26 @@ export const routes: Routes = [
     },
     {
         path: 'docs',
-        // component: MyInputComponent
-        // loadComponent: () => import('./docs/bank.component').then(mod => mod.MyInputComponent)
-        // loadComponent: () => import('./docs/output.component').then(mod => mod.MyOutputComponent)
-        // loadComponent: () => import('./docs/provider.component').then(mod => mod.HelloProviderComponent)
-        loadComponent: () => import('./docs/profile/user-profile.component').then(mod => mod.UserProfileComponent)
+        loadComponent: () => import('./docs/docs-layout.component').then(mod => mod.DocsLayoutComponent),
+        children: [
+            { path: '', redirectTo: 'basic', pathMatch: 'full' },
+            {
+                path: 'input',
+                loadComponent: () => import('./docs/bank.component').then(mod => mod.MyInputComponent)
+            },
+            {
+                path: 'output',
+                loadComponent: () => import('./docs/output.component').then(mod => mod.MyOutputComponent)
+            },
+            {
+                path: 'provider',
+                loadComponent: () => import('./docs/provider.component').then(mod => mod.HelloProviderComponent)
+            },
+            {
+                path: 'basic',
+                loadComponent: () => import('./docs/profile/user-profile.component').then(mod => mod.UserProfileComponent)
+            },
+        ]
     },
     {
       path: 'eyay',

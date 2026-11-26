@@ -1,6 +1,6 @@
 <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/docs">Docs</a>
-    <a routerLink="/eyay">Eyay</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/docs" routerLinkActive="active">Docs</a>
+    <a routerLink="/eyay" routerLinkActive="active">Eyay</a>
 </nav>
 <router-outlet />
