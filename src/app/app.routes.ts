@@ -10,7 +10,8 @@ export const routes: Routes = [
         // component: MyInputComponent
         // loadComponent: () => import('./docs/bank.component').then(mod => mod.MyInputComponent)
         // loadComponent: () => import('./docs/output.component').then(mod => mod.MyOutputComponent)
-        loadComponent: () => import('./docs/provider.component').then(mod => mod.HelloProviderComponent)
+        // loadComponent: () => import('./docs/provider.component').then(mod => mod.HelloProviderComponent)
+        loadComponent: () => import('./docs/profile/user-profile.component').then(mod => mod.UserProfileComponent)
     },
     {
       path: 'eyay',
