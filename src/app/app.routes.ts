@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 
-import { MyInputComponent } from './docs/bank.component';
-
 export const routes: Routes = [
+    {
+        path: '',
+        loadComponent: () => import('./home.component').then(mod => mod.HomeComponent)
+    },
     {
         path: 'docs',
         // component: MyInputComponent
@@ -16,6 +18,7 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: ''
+        redirectTo: '',
+        pathMatch: 'full'
     }
 ];
