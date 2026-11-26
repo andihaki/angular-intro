@@ -1,5 +1,6 @@
-import { Component, Directive } from "@angular/core";
+import { Component, Directive, Injectable, inject } from "@angular/core";
 
+@Injectable()
 class Greeter {
     greet(name: string) {
         return `hello ${name}!`;
@@ -7,20 +8,17 @@ class Greeter {
 }
 
 @Directive({
-    selector: 'needs-greeter'
+    selector: 'needs-greeter',
+    host: { '[textContent]': 'greeting' },
 })
 class GreeterDirective {
-    greeter:Greeter;
-
-    constructor(greeter:Greeter){
-        this.greeter = greeter;
-    }
+    greeting = inject(Greeter).greet('world');
 }
 
 @Component({
     selector: 'greet',
     viewProviders: [Greeter],
-    template: `<needs-greeter></needs-greeter>`,
+    template: `<needs-greeter>WORLD</needs-greeter>`,
     imports: [GreeterDirective]
 })
 export class HelloProviderComponent {    
