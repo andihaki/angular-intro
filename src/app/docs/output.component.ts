@@ -1,4 +1,4 @@
-import { Component, Directive, output } from '@angular/core';
+import { Component, DestroyRef, Directive, inject, output } from '@angular/core';
 
 @Directive({
     selector: 'app-interval-dir'
@@ -8,8 +8,12 @@ export class IntervalDirComponent {
     everyFiveSeconds = output<string>();
     
     constructor() {
-        setInterval(() => this.everySecond.emit('event'), 1000);
-        setInterval(() => this.everyFiveSeconds.emit('event'), 5000);
+        const everySecond = setInterval(() => this.everySecond.emit('event'), 1000);
+        const everyFiveSeconds = setInterval(() => this.everyFiveSeconds.emit('event'), 5000);
+        inject(DestroyRef).onDestroy(() => {
+            clearInterval(everySecond);
+            clearInterval(everyFiveSeconds);
+        });
     }
 }
 
